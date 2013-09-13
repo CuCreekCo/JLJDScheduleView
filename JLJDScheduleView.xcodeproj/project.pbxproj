@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		888850F41868B01E29F00214 /* JLJDResourceDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88885547C402A73FB34423A1 /* JLJDResourceDayView.m */; };
+		888851C34BD12B34B2136EC2 /* JLJDHourOfDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8888515CDD1E0223FB43CD9D /* JLJDHourOfDayView.m */; };
+		888852A29AA3C9C8692E0D45 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88885D2831B55BA0CF4727B8 /* SenTestingKit.framework */; };
+		8888535F6F9E179AE685AADD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88885287CCA388A07A1B93C8 /* CoreGraphics.framework */; };
+		88885370A3E66A6046AD33FC /* JLJDScheduleViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 888854B653D8CFD37E261D53 /* JLJDScheduleViewTests.m */; };
+		88885473F15A2A8D7578D749 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888858C5B9A366CE477AF169 /* UIKit.framework */; };
+		8888548EDDA64EFBB82EDD4F /* JLJDScheduleView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 888855D88EE6D069DB15633C /* JLJDScheduleView.h */; };
+		88885490A96F03C0439CDCD0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888854128B5125DEC95659FE /* Foundation.framework */; };
+		8888566073D0A01F01436A24 /* JLJDDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888855D341392A2343933A63 /* JLJDDayView.m */; };
+		8888566D3257A2CF51568DEE /* JLJDDayTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888850BE8093D549B89165EE /* JLJDDayTitleView.m */; };
+		888856C7EF9F7C38E2A6BB82 /* JLJDScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88885CA88A4BE1FDDC8527A9 /* JLJDScheduleView.m */; };
+		88885B6BFEB5A8E2F3255385 /* libJLJDScheduleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 888859A1D5E6CEEB04428E2E /* libJLJDScheduleView.a */; };
+		88885B9262C10DB88BC922CA /* JLJDResourceTimeBlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88885B5807B5EF0996DEB200 /* JLJDResourceTimeBlockView.m */; };
+		88885BBB99A828A334694388 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8888538D35F5BEAA14E20F87 /* InfoPlist.strings */; };
+		88885BDC422E0EE8425FDC47 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888854128B5125DEC95659FE /* Foundation.framework */; };
+		88885EDFB8FBDDC405FDAC04 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88885E4A59FE12606AF60C0D /* EventKit.framework */; };
+		88885FA4D287586F07313239 /* JLJDResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8888596962407EF51DA2CB4D /* JLJDResource.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8888574F44EDBA648709DD9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88885042C7CCAF2E211824EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8888506B86CB25AE00ED2736;
+			remoteInfo = JLJDScheduleView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88885339556E57FE1F4F69DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				8888548EDDA64EFBB82EDD4F /* JLJDScheduleView.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		888850BE8093D549B89165EE /* JLJDDayTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLJDDayTitleView.m; sourceTree = "<group>"; };
+		8888515CDD1E0223FB43CD9D /* JLJDHourOfDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLJDHourOfDayView.m; sourceTree = "<group>"; };
+		888852660040DAACF45912BD /* JLJDDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDDayView.h; sourceTree = "<group>"; };
+		88885287CCA388A07A1B93C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		888854128B5125DEC95659FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		888854B653D8CFD37E261D53 /* JLJDScheduleViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJDScheduleViewTests.m; sourceTree = "<group>"; };
+		88885515F60648C6F9B68B81 /* JLJDDayTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDDayTitleView.h; sourceTree = "<group>"; };
+		88885547C402A73FB34423A1 /* JLJDResourceDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLJDResourceDayView.m; sourceTree = "<group>"; };
+		888855D341392A2343933A63 /* JLJDDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLJDDayView.m; sourceTree = "<group>"; };
+		888855D88EE6D069DB15633C /* JLJDScheduleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJDScheduleView.h; sourceTree = "<group>"; };
+		88885666313679D02E038F5E /* JLJDResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLJDResource.h; path = DataItems/JLJDResource.h; sourceTree = "<group>"; };
+		8888570BD59BE079FACF2A39 /* JLJDResourceDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDResourceDayView.h; sourceTree = "<group>"; };
+		8888571FEF8EC52DB1CE1650 /* JLJDScheduleViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJDScheduleViewTests.h; sourceTree = "<group>"; };
+		888858C5B9A366CE477AF169 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8888596962407EF51DA2CB4D /* JLJDResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLJDResource.m; path = DataItems/JLJDResource.m; sourceTree = "<group>"; };
+		888859A1D5E6CEEB04428E2E /* libJLJDScheduleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJLJDScheduleView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88885B5807B5EF0996DEB200 /* JLJDResourceTimeBlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLJDResourceTimeBlockView.m; sourceTree = "<group>"; };
+		88885BF2F526FCD6FEBF6EAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88885C9394DFB9710D451863 /* JLJDHourOfDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDHourOfDayView.h; sourceTree = "<group>"; };
+		88885CA88A4BE1FDDC8527A9 /* JLJDScheduleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJDScheduleView.m; sourceTree = "<group>"; };
+		88885D2831B55BA0CF4727B8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		88885D7DE953479CDB0AA04C /* JLJDScheduleViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLJDScheduleViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88885E4A59FE12606AF60C0D /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		88885E87F4F13212E2CDA083 /* JLJDScheduleViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JLJDScheduleViewTests-Info.plist"; sourceTree = "<group>"; };
+		88885F5FD2098C05381764B6 /* JLJDScheduleView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JLJDScheduleView-Prefix.pch"; sourceTree = "<group>"; };
+		88885FFF8E7A5338CF052A93 /* JLJDResourceTimeBlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDResourceTimeBlockView.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		888857C393C5425B91C20435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88885490A96F03C0439CDCD0 /* Foundation.framework in Frameworks */,
+				8888535F6F9E179AE685AADD /* CoreGraphics.framework in Frameworks */,
+				88885EDFB8FBDDC405FDAC04 /* EventKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88885EEE2FB76308132CF688 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				888852A29AA3C9C8692E0D45 /* SenTestingKit.framework in Frameworks */,
+				88885473F15A2A8D7578D749 /* UIKit.framework in Frameworks */,
+				88885BDC422E0EE8425FDC47 /* Foundation.framework in Frameworks */,
+				88885B6BFEB5A8E2F3255385 /* libJLJDScheduleView.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8888516338D35BCF068487E2 /* DataItems */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataItems;
+			sourceTree = "<group>";
+		};
+		888853DCA7E7378E092D3AC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				888854128B5125DEC95659FE /* Foundation.framework */,
+				88885D2831B55BA0CF4727B8 /* SenTestingKit.framework */,
+				888858C5B9A366CE477AF169 /* UIKit.framework */,
+				88885287CCA388A07A1B93C8 /* CoreGraphics.framework */,
+				88885E4A59FE12606AF60C0D /* EventKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8888540CBFE647AF3F23193F /* JLJDScheduleViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				88885BAA9E703DED0FD6949D /* Supporting Files */,
+				8888571FEF8EC52DB1CE1650 /* JLJDScheduleViewTests.h */,
+				888854B653D8CFD37E261D53 /* JLJDScheduleViewTests.m */,
+			);
+			path = JLJDScheduleViewTests;
+			sourceTree = "<group>";
+		};
+		888854290CFCE8807891E682 = {
+			isa = PBXGroup;
+			children = (
+				88885A63840C75F1C416A080 /* Products */,
+				888853DCA7E7378E092D3AC8 /* Frameworks */,
+				8888557E3E7C3BB139C52431 /* JLJDScheduleView */,
+				8888540CBFE647AF3F23193F /* JLJDScheduleViewTests */,
+			);
+			sourceTree = "<group>";
+		};
+		8888557E3E7C3BB139C52431 /* JLJDScheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				88885F9363E8910F7237C82B /* Supporting Files */,
+				888855D88EE6D069DB15633C /* JLJDScheduleView.h */,
+				88885CA88A4BE1FDDC8527A9 /* JLJDScheduleView.m */,
+				88885B5807B5EF0996DEB200 /* JLJDResourceTimeBlockView.m */,
+				88885FFF8E7A5338CF052A93 /* JLJDResourceTimeBlockView.h */,
+				888855D341392A2343933A63 /* JLJDDayView.m */,
+				888852660040DAACF45912BD /* JLJDDayView.h */,
+				888850BE8093D549B89165EE /* JLJDDayTitleView.m */,
+				88885515F60648C6F9B68B81 /* JLJDDayTitleView.h */,
+				8888515CDD1E0223FB43CD9D /* JLJDHourOfDayView.m */,
+				88885C9394DFB9710D451863 /* JLJDHourOfDayView.h */,
+				88885547C402A73FB34423A1 /* JLJDResourceDayView.m */,
+				8888570BD59BE079FACF2A39 /* JLJDResourceDayView.h */,
+				8888516338D35BCF068487E2 /* DataItems */,
+				88885666313679D02E038F5E /* JLJDResource.h */,
+				8888596962407EF51DA2CB4D /* JLJDResource.m */,
+			);
+			path = JLJDScheduleView;
+			sourceTree = "<group>";
+		};
+		88885A63840C75F1C416A080 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				888859A1D5E6CEEB04428E2E /* libJLJDScheduleView.a */,
+				88885D7DE953479CDB0AA04C /* JLJDScheduleViewTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88885BAA9E703DED0FD6949D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88885E87F4F13212E2CDA083 /* JLJDScheduleViewTests-Info.plist */,
+				8888538D35F5BEAA14E20F87 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88885F9363E8910F7237C82B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88885F5FD2098C05381764B6 /* JLJDScheduleView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8888506B86CB25AE00ED2736 /* JLJDScheduleView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88885055FCCBB757EE150DCA /* Build configuration list for PBXNativeTarget "JLJDScheduleView" */;
+			buildPhases = (
+				88885E396D020F6BA94F88CB /* Sources */,
+				888857C393C5425B91C20435 /* Frameworks */,
+				88885339556E57FE1F4F69DE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JLJDScheduleView;
+			productName = JLJDScheduleView;
+			productReference = 888859A1D5E6CEEB04428E2E /* libJLJDScheduleView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8888566DB7E4BBFBC202DD0B /* JLJDScheduleViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8888557A5F78734E330D61C6 /* Build configuration list for PBXNativeTarget "JLJDScheduleViewTests" */;
+			buildPhases = (
+				8888587850254BBECB424FF2 /* Sources */,
+				88885EEE2FB76308132CF688 /* Frameworks */,
+				88885340910834B646EBDCA0 /* Resources */,
+				8888561C7B23BA7C2B726E45 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88885E023EAD781C9DCF9037 /* PBXTargetDependency */,
+			);
+			name = JLJDScheduleViewTests;
+			productName = JLJDScheduleViewTests;
+			productReference = 88885D7DE953479CDB0AA04C /* JLJDScheduleViewTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88885042C7CCAF2E211824EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+			};
+			buildConfigurationList = 88885FCEE3BD1160D066720F /* Build configuration list for PBXProject "JLJDScheduleView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 888854290CFCE8807891E682;
+			productRefGroup = 88885A63840C75F1C416A080 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8888506B86CB25AE00ED2736 /* JLJDScheduleView */,
+				8888566DB7E4BBFBC202DD0B /* JLJDScheduleViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88885340910834B646EBDCA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88885BBB99A828A334694388 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8888561C7B23BA7C2B726E45 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8888587850254BBECB424FF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88885370A3E66A6046AD33FC /* JLJDScheduleViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88885E396D020F6BA94F88CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				888856C7EF9F7C38E2A6BB82 /* JLJDScheduleView.m in Sources */,
+				88885B9262C10DB88BC922CA /* JLJDResourceTimeBlockView.m in Sources */,
+				8888566073D0A01F01436A24 /* JLJDDayView.m in Sources */,
+				8888566D3257A2CF51568DEE /* JLJDDayTitleView.m in Sources */,
+				888851C34BD12B34B2136EC2 /* JLJDHourOfDayView.m in Sources */,
+				888850F41868B01E29F00214 /* JLJDResourceDayView.m in Sources */,
+				88885FA4D287586F07313239 /* JLJDResource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88885E023EAD781C9DCF9037 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8888506B86CB25AE00ED2736 /* JLJDScheduleView */;
+			targetProxy = 8888574F44EDBA648709DD9B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8888538D35F5BEAA14E20F87 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88885BF2F526FCD6FEBF6EAF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		888850DB1CCE124FB102C564 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JLJDScheduleView/JLJDScheduleView-Prefix.pch";
+				INFOPLIST_FILE = "JLJDScheduleViewTests/JLJDScheduleViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		888850E1A705E11089B3E94F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88885209D5444834E345476D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JLJDScheduleView/JLJDScheduleView-Prefix.pch";
+				INFOPLIST_FILE = "JLJDScheduleViewTests/JLJDScheduleViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		8888550A2DB27839D28C8C5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/JLJDScheduleView.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JLJDScheduleView/JLJDScheduleView-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		8888594DC82E690BBBA384FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		88885E7D722661573E23E206 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/JLJDScheduleView.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JLJDScheduleView/JLJDScheduleView-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88885055FCCBB757EE150DCA /* Build configuration list for PBXNativeTarget "JLJDScheduleView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8888550A2DB27839D28C8C5F /* Release */,
+				88885E7D722661573E23E206 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8888557A5F78734E330D61C6 /* Build configuration list for PBXNativeTarget "JLJDScheduleViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				888850DB1CCE124FB102C564 /* Release */,
+				88885209D5444834E345476D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88885FCEE3BD1160D066720F /* Build configuration list for PBXProject "JLJDScheduleView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				888850E1A705E11089B3E94F /* Release */,
+				8888594DC82E690BBBA384FF /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88885042C7CCAF2E211824EB /* Project object */;
+}
