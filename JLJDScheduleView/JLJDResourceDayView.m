@@ -2,14 +2,15 @@
   Created by Jason Davidson on 9/11/13.
   Copyright (c) 2013 JLJDavidson, LLC. All rights reserved.
 
-  Represents a resources schedule for a day.
-
+  A resource's day view show a row and all its blocked out time
+  spots for the given day.
 */
 
 
 #import <EventKit/EventKit.h>
 #import "JLJDResourceDayView.h"
 #import "JLJDResourceTimeBlockView.h"
+#import "NSDate+JLJDDateComparison.h"
 
 @implementation JLJDResourceDayView {
 
@@ -57,31 +58,16 @@ day view coordinate system:
 {
    int blocksInDayView = end - start + 1;
    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-   NSDateComponents *dateComponents =
-         [gregorian components:(NSHourCalendarUnit |
-               NSMinuteCalendarUnit | NSDayCalendarUnit |
-               NSMonthCalendarUnit | NSYearCalendarUnit)
-               fromDate:date];
    NSDateComponents *eventStartHourOfDayComponent =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |
                NSMonthCalendarUnit | NSYearCalendarUnit)
                fromDate:[event startDate]];
-   NSDateComponents *eventEndHourOfDayComponent =
-         [gregorian components:(NSHourCalendarUnit |
-               NSMinuteCalendarUnit | NSDayCalendarUnit |
-               NSMonthCalendarUnit | NSYearCalendarUnit)
-               fromDate:[event endDate]];
 
    float fallsOnX;
 
-   if (([eventStartHourOfDayComponent day] == [dateComponents day] &&
-         [eventStartHourOfDayComponent month] == [dateComponents month] &&
-         [eventStartHourOfDayComponent year] == [dateComponents year]) ||
-      ([eventEndHourOfDayComponent day] == [dateComponents day] &&
-         [eventEndHourOfDayComponent month] == [dateComponents month] &&
-         [eventEndHourOfDayComponent year] == [dateComponents year])) {
-
+   if ([[event startDate] isSameDayAsDate:date ] ||
+         [[event endDate] isSameDayAsDate:date]) {
       float hourFraction = (float)[eventStartHourOfDayComponent minute]/60;
       float hourPosition =(
             abs(blocksInDayView - [eventStartHourOfDayComponent hour]) *
@@ -93,4 +79,48 @@ day view coordinate system:
    }
    return CGPointMake(-999.0, -999.0);
 }
+
+#pragma mark Drawing UI
+- (void)drawRect:(CGRect)rect {
+   CGContextRef context = UIGraphicsGetCurrentContext();
+
+   CGContextSetLineWidth(context, 1.0);
+
+   CGContextSaveGState(context);
+   CGContextSetStrokeColorWithColor(context,
+         [UIColor
+               colorWithRed: 152.0/255.0
+               green: 251.0/255.0
+               blue:152.0 / 255.0 alpha: 1.0].CGColor);
+   CGContextMoveToPoint(context, 0, 0);
+   CGContextAddLineToPoint(context, 0, self.bounds.size.height);
+   CGContextAddLineToPoint(context, self.bounds.size.width,
+         self.bounds.size.height);
+   CGContextAddLineToPoint(context, self.bounds.size.width, 0);
+   CGContextStrokePath(context);
+   CGContextRestoreGState(context);
+}
+
+#pragma mark Touches
+- (void)touchesBegan:(NSSet *)touches
+           withEvent:(UIEvent *)event {
+   NSLog(@"Touches began");
+}
+
+- (void)touchesCancelled:(NSSet *)touches
+               withEvent:(UIEvent *)event {
+   [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches
+           withEvent:(UIEvent *)event {
+   [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches
+           withEvent:(UIEvent *)event {
+   [super touchesMoved:touches withEvent:event];
+}
+
+
 @end

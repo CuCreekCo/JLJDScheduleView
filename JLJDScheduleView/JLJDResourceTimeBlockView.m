@@ -2,14 +2,18 @@
   Created by Jason Davidson on 9/11/13.
   Copyright (c) 2013 JLJDavidson, LLC. All rights reserved.
 
-  To change the template use AppCode | Preferences | File Templates.
+  The resource time block displays a rectangle from the start date time
+  through the end date time.  This rectangle is then added to the resource
+  day view.
 
 */
 
 
 #import "JLJDResourceTimeBlockView.h"
 
-float const kJLJDScheduleBlockWidthPerHour = 20.0;
+float const kJLJDScheduleBlockWidthPerHour = 40.0;
+float const kJLJDScheduleBlockHeight = 40.0;
+float const kJLJDScheduleBlockWidth = 40.0;
 
 @implementation JLJDResourceTimeBlockView
 
@@ -34,7 +38,7 @@ float const kJLJDScheduleBlockWidthPerHour = 20.0;
    long endMilliseconds = [[self endDateTime] timeIntervalSince1970];
    long millisecondDiff = (endMilliseconds - startMilliseconds);
    float toMinutes = (float)millisecondDiff/60;
-   float toHours = (float)toMinutes/60;
+   float toHours = toMinutes/60;
    return toHours * kJLJDScheduleBlockWidthPerHour;
 }
 
@@ -53,7 +57,8 @@ float const kJLJDScheduleBlockWidthPerHour = 20.0;
 
 - (void)drawBackground {
    //TODO change background to match the number items in this block
-   [[UIColor greenColor] setFill];
+   UIColor *color = [UIColor orangeColor];
+   [color setFill];
    UIRectFill(self.bounds);
 }
 
@@ -84,6 +89,7 @@ float const kJLJDScheduleBlockWidthPerHour = 20.0;
 #pragma mark Touch Handlers
 - (void)touchesBegan:(NSSet *)touches
            withEvent:(UIEvent *)event {
+   NSLog(@"touchesBegan");
    if ([event type] == UIEventTypeTouches) {
       if ([[self delegate] respondsToSelector:@selector
       (resourceTimeBlockView:didSelectTimeBlockStartDateTime:endDateTime:)]) {
@@ -94,7 +100,6 @@ float const kJLJDScheduleBlockWidthPerHour = 20.0;
       }
    }
 }
-
 - (void)touchesMoved:(NSSet *)touches
            withEvent:(UIEvent *)event {
    [super touchesMoved:touches withEvent:event];

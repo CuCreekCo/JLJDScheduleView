@@ -2,7 +2,9 @@
   Created by Jason Davidson on 9/11/13.
   Copyright (c) 2013 JLJDavidson, LLC. All rights reserved.
 
-  To change the template use AppCode | Preferences | File Templates.
+  The resource time block displays a rectangle from the start date time
+  through the end date time.  This rectangle is then added to the resource
+  day view.
 
 */
 
@@ -14,6 +16,9 @@
 
 /* Constants */
 extern float const kJLJDScheduleBlockWidthPerHour;
+extern float const kJLJDScheduleBlockHeight;
+extern float const kJLJDScheduleBlockWidth;
+
 
 @interface JLJDResourceTimeBlockView : UIView
 
@@ -27,6 +32,9 @@ extern float const kJLJDScheduleBlockWidthPerHour;
               yPosition:(float)y;
 @end
 
+/*
+   Delegation to handle touching on a resources block
+ */
 @protocol JLJDResourceTimeBlockViewDelegate<NSObject>
 @optional
 - (void)resourceTimeBlockView:(JLJDResourceTimeBlockView *)timeBlockView

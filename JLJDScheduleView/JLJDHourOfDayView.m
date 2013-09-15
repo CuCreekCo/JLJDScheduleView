@@ -2,7 +2,8 @@
   Created by Jason Davidson on 9/11/13.
   Copyright (c) 2013 JLJDavidson, LLC. All rights reserved.
 
-  To change the template use AppCode | Preferences | File Templates.
+  Hour of Day view to show the hour in question with delegation capabilities.
+  The hour of day is used in the day view title hour block view.
 
 */
 
@@ -13,6 +14,8 @@
 @implementation JLJDHourOfDayView {
 
 }
+
+@synthesize hourOfDay = _hourOfDay;
 
 - (id)initWithFrame:(CGRect)frame {
    self = [super initWithFrame:frame];
@@ -93,15 +96,33 @@
       [[UIColor whiteColor] set];
    }
 
-   UIFont *textFont = [UIFont boldSystemFontOfSize:17.0];
+   UIFont *textFont = [UIFont systemFontOfSize:12.0];
    CGSize textSize = [[_hourOfDay stringValue] sizeWithFont:textFont];
 
-   CGRect textRect = CGRectMake(ceilf(CGRectGetMidX(self.bounds) - (textSize.width / 2.0)), ceilf(CGRectGetMidY(self.bounds) - (textSize.height / 2.0)), textSize.width, textSize.height);
-   [[_hourOfDay stringValue] drawInRect:textRect withFont:textFont];
+   CGRect textRect = CGRectMake(
+         ceilf(CGRectGetMidX(self.bounds) - (textSize.width / 2.0)),
+         ceilf(CGRectGetMidY(self.bounds) - (textSize.height / 2.0)), textSize.width, textSize.height);
+   NSString *hourOfDayText;
+   if([[self hourOfDay] intValue]>12){
+      hourOfDayText = [NSString stringWithFormat:@"%d",
+                  ([[self hourOfDay] intValue]-12)];
+   } else if ([[self hourOfDay] intValue]==12){
+      hourOfDayText = [NSString stringWithFormat:@"%d",
+                                                 ([[self hourOfDay] intValue])];
+   } else {
+      hourOfDayText = [NSString stringWithFormat:@"%d",
+                                                 ([[self hourOfDay] intValue])];
+   }
+   [hourOfDayText drawInRect:textRect withFont:textFont];
 }
 
+#pragma mark Touch Events
+/*
+   Handles touch events on the hour of day block
+*/
 - (void)touchesBegan:(NSSet *)touches
            withEvent:(UIEvent *)event {
+   NSLog(@"touchesBegan");
    if ([event type] == UIEventTypeTouches) {
       if ([[self delegate] respondsToSelector:@selector
       (hourOfDayView:didSelectHour:)]) {
