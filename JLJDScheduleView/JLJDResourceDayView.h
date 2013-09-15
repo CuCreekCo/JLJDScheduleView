@@ -10,13 +10,36 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JLJDResource.h"
+#import "JLJDResourceTimeBlockView.h"
 
-@interface JLJDResourceDayView : UIView
-@property (nonatomic, strong) JLJDResource *resource;
+@protocol JLJDResourceDayViewDelegate;
+@class EKEvent;
+
+@interface JLJDResourceDayView : UIView <JLJDResourceTimeBlockViewDelegate>
+@property(nonatomic, strong) JLJDResource *resource;
+@property(nonatomic, weak) id <JLJDResourceDayViewDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame
        dayStartHour:(int)start
          dayEndHour:(int)end
                date:(NSDate *)date
         andResource:(JLJDResource *)resource;
+
++ (CGPoint)pointInDayWithStartDateTime:(NSDate *)startTime
+                           fallsOnDate:(NSDate *)date
+                           forDayStart:(int)start
+                                dayEnd:(int)end;
+@end
+
+/*
+   Day title view delegate that will detect touch events title bar.
+*/
+@protocol JLJDResourceDayViewDelegate <NSObject>
+@optional
+- (void)    resourceDayView:(JLJDResourceDayView *)resourceDayView
+didSelectBlockStartDateTime:(NSDate *)startDate
+                endDateTime:(NSDate *)endDate
+                   resource:(JLJDResource *)resource
+                  withEvent:(EKEvent *)event;
+
 @end

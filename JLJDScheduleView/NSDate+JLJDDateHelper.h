@@ -9,6 +9,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDate (JLJDDateComparison)
+@interface NSDate (JLJDDateHelper)
 - (BOOL)isSameDayAsDate:(NSDate *)otherDate;
+
+- (int)hourOfDate;
+
+- (int)minutesOfDate;
+
+- (NSDate *)setHour:(NSNumber *)hour
+         andMinutes:(NSNumber *)minutes;
 @end

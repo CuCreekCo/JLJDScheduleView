@@ -72,6 +72,7 @@
             initWithFrame:CGRectMake(j * kJLJDScheduleBlockWidthPerHour, 0,
                   kJLJDScheduleBlockWidth,
                   kJLJDScheduleBlockHeight / 2)];
+      [hourOfDayView setDelegate:self];
       [hourOfDayView setHourOfDay:[NSNumber numberWithInt:i]];
       [returnView addSubview:hourOfDayView];
    }
@@ -85,9 +86,14 @@
 */
 - (void)hourOfDayView:(JLJDHourOfDayView *)hourOfDayView
         didSelectHour:(NSNumber *)hour {
-   //TODO implement me
-   NSLog(@"hourOfDayView YAY, You Pressed It!");
-
+   NSLog(@"dayTitleView hour of day touched");
+   if ([self delegate] != nil &&
+         [[self delegate]
+               respondsToSelector:@selector(dayTitleView:didSelectHour:forDate:)]) {
+      [[self delegate] dayTitleView:self didSelectHour:hour
+            forDate:[self date]];
+   }
 }
+
 
 @end

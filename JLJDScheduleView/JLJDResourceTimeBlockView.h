@@ -13,6 +13,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol JLJDResourceTimeBlockViewDelegate;
+@class JLJDResource;
+@class EKEvent;
 
 /* Constants */
 extern float const kJLJDScheduleBlockWidthPerHour;
@@ -25,6 +27,8 @@ extern float const kJLJDScheduleBlockWidth;
 @property (nonatomic, weak) id<JLJDResourceTimeBlockViewDelegate>delegate;
 @property (nonatomic, strong) NSDate *startDateTime;
 @property (nonatomic, strong) NSDate *endDateTime;
+@property (nonatomic, strong) JLJDResource *resource;
+@property (nonatomic, strong) EKEvent *event;
 
 - (id)initWithStartDate:(NSDate *)start
                 endDate:(NSDate *)end
@@ -39,5 +43,7 @@ extern float const kJLJDScheduleBlockWidth;
 @optional
 - (void)resourceTimeBlockView:(JLJDResourceTimeBlockView *)timeBlockView
          didSelectTimeBlockStartDateTime:(NSDate *)startDateTime
-                  endDateTime:(NSDate *)endDateTime;
+                  endDateTime:(NSDate *)endDateTime
+                     resource:(JLJDResource *)resource
+                     withEvent:(EKEvent *)event;
 @end

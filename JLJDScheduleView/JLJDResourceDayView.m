@@ -8,9 +8,10 @@
 
 
 #import <EventKit/EventKit.h>
+#import "JLJDResourceTimeBlockView.h"
 #import "JLJDResourceDayView.h"
 #import "JLJDResourceTimeBlockView.h"
-#import "NSDate+JLJDDateComparison.h"
+#import "NSDate+JLJDDateHelper.h"
 
 @implementation JLJDResourceDayView {
 
@@ -27,14 +28,17 @@
    if (self) {
       [self setResource:resource];
       for (EKEvent *event in [resource eventArray]) {
-         CGPoint pointOnDayScale = [self pointInDayForEvent:event
-               fallsOnDate:date forDayStart:start  dayEnd:end];
+         CGPoint pointOnDayScale =
+               [JLJDResourceDayView pointInDayWithStartDateTime:[event
+                     startDate] fallsOnDate:date forDayStart:start dayEnd:end];
          if(pointOnDayScale.x>0.0 && pointOnDayScale.y>=0.0){
             JLJDResourceTimeBlockView *timeBlockView =
                   [[JLJDResourceTimeBlockView alloc]
                         initWithStartDate:[event startDate]
                         endDate:[event endDate] xPosition:pointOnDayScale.x
                         yPosition:pointOnDayScale.y];
+            [timeBlockView setEvent:event];
+            [timeBlockView setDelegate:self];
             [self addSubview:timeBlockView];
             [timeBlockView didMoveToSuperview];
          }
@@ -53,21 +57,22 @@ day view coordinate system:
 
       Return the X and Y where the event falls (Y is always 0)
  */
--(CGPoint)pointInDayForEvent:(EKEvent *)event fallsOnDate:(NSDate *)date
-            forDayStart:(int)start dayEnd:(int)end
-{
-   int blocksInDayView = end - start + 1;
++ (CGPoint)pointInDayWithStartDateTime:(NSDate *)startTime
+                           fallsOnDate:(NSDate *)date
+                           forDayStart:(int)start
+                                dayEnd:(int)end {
+   int blocksInDayView = abs(end - start) + 1;
    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
    NSDateComponents *eventStartHourOfDayComponent =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |
                NSMonthCalendarUnit | NSYearCalendarUnit)
-               fromDate:[event startDate]];
+               fromDate:startTime];
 
    float fallsOnX;
 
-   if ([[event startDate] isSameDayAsDate:date ] ||
-         [[event endDate] isSameDayAsDate:date]) {
+   if ([startTime isSameDayAsDate:date ] ||
+         [startTime isSameDayAsDate:date]) {
       float hourFraction = (float)[eventStartHourOfDayComponent minute]/60;
       float hourPosition =(
             abs(blocksInDayView - [eventStartHourOfDayComponent hour]) *
@@ -120,6 +125,30 @@ day view coordinate system:
 - (void)touchesMoved:(NSSet *)touches
            withEvent:(UIEvent *)event {
    [super touchesMoved:touches withEvent:event];
+}
+
+/*
+   Handle resource time block touch as delegate and pass up thru self
+      delegate
+*/
+- (void)  resourceTimeBlockView:(JLJDResourceTimeBlockView *)timeBlockView
+didSelectTimeBlockStartDateTime:(NSDate *)startDateTime
+                    endDateTime:(NSDate *)endDateTime
+                       resource:(JLJDResource *)resource
+                     withEvent:(EKEvent *)event {
+   NSLog(@"resourceTimeBlockView handling touch of resource block");
+
+   if ([self delegate] != nil) {
+      if([[self delegate] respondsToSelector:
+            @selector(resourceDayView:didSelectBlockStartDateTime:endDateTime:resource:withEvent:)]) {
+         [[self delegate]
+               resourceDayView:self
+               didSelectBlockStartDateTime:startDateTime
+               endDateTime:endDateTime
+               resource:resource
+               withEvent:event];
+      }
+   }
 }
 
 

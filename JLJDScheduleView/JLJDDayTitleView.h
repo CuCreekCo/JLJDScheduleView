@@ -13,8 +13,14 @@
 #import <UIKit/UIKit.h>
 #import "JLJDHourOfDayView.h"
 
+@protocol JLJDDayTitleViewDelegate;
+
+
+@class JLJDayTitleView;
 
 @interface JLJDDayTitleView : UIView <JLJDHourOfDayViewDelegate>
+
+@property (nonatomic, weak) id<JLJDDayTitleViewDelegate>delegate;
 
 @property (nonatomic, copy) NSDate *date; /* Date of the day */
 @property (nonatomic, strong) UILabel *dayLabel; /* The label used to show
@@ -35,8 +41,9 @@ military time */
 /*
    Day title view delegate that will detect touch events title bar.
 */
-@protocol JLJDDayTitleViewDelegate
+@protocol JLJDDayTitleViewDelegate<NSObject>
 @optional
-- (void)dayTitleViewDidSelectHour:(NSNumber *)hour;
+- (void)dayTitleView:(JLJDayTitleView *)dayTitleView didSelectHour:(NSNumber *)hour
+             forDate:(NSDate *)date;
 
 @end

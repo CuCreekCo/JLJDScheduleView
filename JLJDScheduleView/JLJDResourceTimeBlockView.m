@@ -9,7 +9,9 @@
 */
 
 
+#import <EventKit/EventKit.h>
 #import "JLJDResourceTimeBlockView.h"
+#import "JLJDResource.h"
 
 float const kJLJDScheduleBlockWidthPerHour = 40.0;
 float const kJLJDScheduleBlockHeight = 40.0;
@@ -89,14 +91,16 @@ float const kJLJDScheduleBlockWidth = 40.0;
 #pragma mark Touch Handlers
 - (void)touchesBegan:(NSSet *)touches
            withEvent:(UIEvent *)event {
-   NSLog(@"touchesBegan");
+   NSLog(@"resourceTimeBlockView touches");
    if ([event type] == UIEventTypeTouches) {
       if ([[self delegate] respondsToSelector:@selector
-      (resourceTimeBlockView:didSelectTimeBlockStartDateTime:endDateTime:)]) {
+      (resourceTimeBlockView:didSelectTimeBlockStartDateTime:endDateTime:resource:withEvent:)]) {
          [[self delegate]
                resourceTimeBlockView:self
                didSelectTimeBlockStartDateTime:[self startDateTime]
-               endDateTime:[self endDateTime]];
+               endDateTime:[self endDateTime]
+               resource:[self resource]
+               withEvent:[self event]];
       }
    }
 }

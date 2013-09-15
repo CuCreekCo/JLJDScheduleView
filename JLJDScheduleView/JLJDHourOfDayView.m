@@ -122,7 +122,7 @@
 */
 - (void)touchesBegan:(NSSet *)touches
            withEvent:(UIEvent *)event {
-   NSLog(@"touchesBegan");
+   NSLog(@"hourOfDayView handling touch of hour");
    if ([event type] == UIEventTypeTouches) {
       if ([[self delegate] respondsToSelector:@selector
       (hourOfDayView:didSelectHour:)]) {

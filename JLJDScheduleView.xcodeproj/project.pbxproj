@@ -18,7 +18,7 @@
 		8888566073D0A01F01436A24 /* JLJDDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888855D341392A2343933A63 /* JLJDDayView.m */; };
 		8888566D3257A2CF51568DEE /* JLJDDayTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888850BE8093D549B89165EE /* JLJDDayTitleView.m */; };
 		888856C7EF9F7C38E2A6BB82 /* JLJDScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88885CA88A4BE1FDDC8527A9 /* JLJDScheduleView.m */; };
-		88885AF1CCB3BEDDE84AF515 /* NSDate+JLJDDateComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 8888535C2816F508A30487AE /* NSDate+JLJDDateComparison.m */; };
+		88885AF1CCB3BEDDE84AF515 /* NSDate+JLJDDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8888535C2816F508A30487AE /* NSDate+JLJDDateHelper.m */; };
 		88885B6BFEB5A8E2F3255385 /* libJLJDScheduleView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 888859A1D5E6CEEB04428E2E /* libJLJDScheduleView.a */; };
 		88885B9262C10DB88BC922CA /* JLJDResourceTimeBlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88885B5807B5EF0996DEB200 /* JLJDResourceTimeBlockView.m */; };
 		88885BBB99A828A334694388 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8888538D35F5BEAA14E20F87 /* InfoPlist.strings */; };
@@ -55,7 +55,7 @@
 		8888515CDD1E0223FB43CD9D /* JLJDHourOfDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLJDHourOfDayView.m; sourceTree = "<group>"; };
 		888852660040DAACF45912BD /* JLJDDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDDayView.h; sourceTree = "<group>"; };
 		88885287CCA388A07A1B93C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8888535C2816F508A30487AE /* NSDate+JLJDDateComparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JLJDDateComparison.m"; sourceTree = "<group>"; };
+		8888535C2816F508A30487AE /* NSDate+JLJDDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+JLJDDateHelper.m"; sourceTree = "<group>"; };
 		888854128B5125DEC95659FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		888854B653D8CFD37E261D53 /* JLJDScheduleViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLJDScheduleViewTests.m; sourceTree = "<group>"; };
 		88885515F60648C6F9B68B81 /* JLJDDayTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDDayTitleView.h; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		88885666313679D02E038F5E /* JLJDResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLJDResource.h; path = DataItems/JLJDResource.h; sourceTree = "<group>"; };
 		8888570BD59BE079FACF2A39 /* JLJDResourceDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLJDResourceDayView.h; sourceTree = "<group>"; };
 		8888571FEF8EC52DB1CE1650 /* JLJDScheduleViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLJDScheduleViewTests.h; sourceTree = "<group>"; };
-		888857BBF3200B3D2A6787BF /* NSDate+JLJDDateComparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JLJDDateComparison.h"; sourceTree = "<group>"; };
+		888857BBF3200B3D2A6787BF /* NSDate+JLJDDateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+JLJDDateHelper.h"; sourceTree = "<group>"; };
 		888858C5B9A366CE477AF169 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8888596962407EF51DA2CB4D /* JLJDResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLJDResource.m; path = DataItems/JLJDResource.m; sourceTree = "<group>"; };
 		888859A1D5E6CEEB04428E2E /* libJLJDScheduleView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJLJDScheduleView.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,8 +164,8 @@
 				8888516338D35BCF068487E2 /* DataItems */,
 				88885666313679D02E038F5E /* JLJDResource.h */,
 				8888596962407EF51DA2CB4D /* JLJDResource.m */,
-				8888535C2816F508A30487AE /* NSDate+JLJDDateComparison.m */,
-				888857BBF3200B3D2A6787BF /* NSDate+JLJDDateComparison.h */,
+				8888535C2816F508A30487AE /* NSDate+JLJDDateHelper.m */,
+				888857BBF3200B3D2A6787BF /* NSDate+JLJDDateHelper.h */,
 			);
 			path = JLJDScheduleView;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				888851C34BD12B34B2136EC2 /* JLJDHourOfDayView.m in Sources */,
 				888850F41868B01E29F00214 /* JLJDResourceDayView.m in Sources */,
 				88885FA4D287586F07313239 /* JLJDResource.m in Sources */,
-				88885AF1CCB3BEDDE84AF515 /* NSDate+JLJDDateComparison.m in Sources */,
+				88885AF1CCB3BEDDE84AF515 /* NSDate+JLJDDateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

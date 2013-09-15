@@ -15,5 +15,25 @@
 
 @synthesize resourceName = _resourceName;
 @synthesize eventArray = _eventArray;
+@synthesize resourceType = _resourceType;
+
+- (id)initWithEventArray:(NSArray *)eventArray
+            resourceName:(NSString *)resourceName
+            resourceType:(NSString *)resourceType {
+   self = [super init];
+   if (self) {
+      self.eventArray = eventArray;
+      self.resourceName = resourceName;
+   }
+
+   return self;
+}
+
++ (id)resourceWithEventArray:(NSArray *)eventArray
+                resourceName:(NSString *)resourceName
+                resourceType:(NSString *)resourceType {
+   return [[self alloc] initWithEventArray:eventArray resourceName:resourceName
+         resourceType:resourceType ];
+}
 
 @end
