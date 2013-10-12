@@ -1,65 +1,76 @@
-JLJDScheduleView
+iOS Calendar Schedule View for iOS (iPad)
 ================
 
-iOS Calendar Schedule View is a scheduling assistant view much like Microsoft Outlook's scheduling assistant view.
+JLJDScheduleView is an iOS scheduling assistant view similar to Microsoft Outlook's scheduling assistant view.
 
 It displays a table of resources (people, places, things) on the left and a 
 horizontally scrollable day view on the right.  The day view shows the day title and columns of hours in the day.
-When a resource has a scheduled item a block is displayed in the hour column:
+When a resource has an event on the visible day, the event is blocked out:
 
 ![Schedule View iOS Widget](https://s3.amazonaws.com/jljdavidson/JLJDScheduleView/JLJDScheduleView.png "Schedule View iOS Widget")
+
+The schedule view supports user touches on resource event blocks and the hour column header. It delegates these
+actions to your view controller.
+
+**This widget is alpha.  I'd love help improving it!**  It needs these improvements:
+* Support vertical scrolling on the resource table
+* Object reuse on the day view horizontal scrolling
+* Automatically retrieve events as the day view is scolled beyond the initial start and end date bounds
+* Get rid of the initWithFrame and use autolayout
+* Testing, testing, testing, and testing!
+
 
 How To Use
 ================
 Link or copy the JLJDScheduleView code into your Xcode project.  
 
-Declare the scheduel view in your controller interface
+Declare the schedule view in your controller interface
 ------------------------------------------------------
-  #import <Foundation/Foundation.h>
-  #import "JLJDScheduleView.h"
 
-  @class JLJDScheduleView;
-  
-  @interface MyScheduleViewController :
-        UIViewController<JLJDScheduleViewDelegate>
-
-  @property (nonatomic, strong) JLJDScheduleView *scheduleView;
-
-  @end
+    #import <Foundation/Foundation.h>
+    #import "JLJDScheduleView.h"
+    
+    @class JLJDScheduleView;
+    
+    @interface MyScheduleViewController :
+          UIViewController<JLJDScheduleViewDelegate>
+    
+    @property (nonatomic, strong) JLJDScheduleView *scheduleView;
+    
+    @end
 
 
 Load the schedule view in your controller implementation
 --------------------------------------------------------
-In your view controller, load the schedule view
 
-  - (void)loadView {
-     [super loadView];
-  
-    NSDate *docketDate = [[[JWorksDataController
-           appDelegateJWorksDataController] jworksDocket] docketDate];
+    - (void)loadView {
+       [super loadView];
+    
+      NSDate *docketDate = [[[JWorksDataController
+             appDelegateJWorksDataController] jworksDocket] docketDate];
+    
+       /* Set up the JLJDScheduleView.  First, set the scrollable 
+      schedule view's start and end date ranges.  Then add resources (person,
+      places, things) to the view using a mock buildResourceScheduleList 
+      method. */
+    
+      /* Set the start date to 2 days ago */
+      NSDate *startDate = [docketDate
+        dateByAddingTimeInterval:60 * 60 * 24 * -2];
+      /* Set the end to date to 7 days in the future */
+      NSDate *endDate = [docketDate
+        dateByAddingTimeInterval:60 * 60 * 24 * 7];
+     
+      [self setScheduleView:[[JLJDScheduleView alloc]
+           initScheduleViewStarting:startDate ending:endDate
+           withResourceList:[self buildResourceScheduleList]
+           withFrame:CGRectMake(0, 0, 701, 393)
+           scrollToDate:docketDate]];
+      [[self scheduleView] setDelegate:self];
+      [self setView:[self scheduleView]];
+    }
 
-     /* Set up the JLJDScheduleView.  First, set the scrollable 
-    schedule view's start and end date ranges.  Then add resources (person,
-    places, things) to the view using a mock buildResourceScheduleList 
-    method. */
-
-    /* Set the start date to 2 days ago */
-    NSDate *startDate = [docketDate
-      dateByAddingTimeInterval:60 * 60 * 24 * -2];
-    /* Set the end to date to 7 days in the future */
-    NSDate *endDate = [docketDate
-      dateByAddingTimeInterval:60 * 60 * 24 * 7];
-   
-    [self setScheduleView:[[JLJDScheduleView alloc]
-         initScheduleViewStarting:startDate ending:endDate
-         withResourceList:[self buildResourceScheduleList]
-         withFrame:CGRectMake(0, 0, 701, 393)
-         scrollToDate:docketDate]];
-    [[self scheduleView] setDelegate:self];
-    [self setView:[self scheduleView]];
-  }
-
-In your view controller, create the delegate methods.
+In your view controller implementation, implement the delegate methods.
 
     /*  
     
@@ -100,7 +111,7 @@ And methods to scroll to a date or highlight an hour column on a specific date.
     }
     
 
-These methods are used to create mock data.  They are used by the code listed above.
+The following methods are used to create mock data.  They are used by the code listed above.
 In real life, the schedule view would use a calendar store or web service to
 retrieve the resources and their events.
 
@@ -184,3 +195,12 @@ retrieve the resources and their events.
        }
        return returnArray;
     }
+
+Here's How it Looks in a Real App
+----------------------------------
+I used a modified version of the [excellent DSLCalendarView](https://github.com/PeteC/DSLCalendarView) for 
+the calendar view on the left of the JLJDScheduleView.  The user can touch a date in the calendar view and
+the schedule view will scroll to the date.  Vice versa, the user can touch an hour header in the schedule view day and
+the calendar view will select the date.
+
+![Schedule View](https://s3.amazonaws.com/jljdavidson/JLJDScheduleView/JLJDScheduleViewInUse.png "Schedule View")
