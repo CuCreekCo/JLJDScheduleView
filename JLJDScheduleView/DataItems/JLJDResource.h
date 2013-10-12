@@ -12,9 +12,9 @@
 
 
 @interface JLJDResource : NSObject
-@property (nonatomic, strong) NSString *resourceName;
-@property (nonatomic, strong) NSString *resourceType;
-@property (nonatomic, strong) NSArray *eventArray;
+@property(nonatomic, strong) NSString *resourceName;
+@property(nonatomic, strong) NSString *resourceType;
+@property(nonatomic, strong) NSArray *eventArray;
 
 - (id)initWithEventArray:(NSArray *)eventArray
             resourceName:(NSString *)resourceName

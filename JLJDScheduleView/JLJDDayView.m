@@ -18,6 +18,8 @@
       startDayHour:(NSNumber *)startDayHour
       resourceList:(NSArray *)resourceList
  indexInParentView:(int)index {
+   NSLog(@"JLJDDayView initWithDate started");
+
    self = [super init];
    if (self) {
       UIColor *oddColor =
@@ -40,6 +42,7 @@
 
       /* For each resource in the list draw a row in this day view */
       float resourceDayViewYPos = [[self dayTitleView] frame].size.height + 4;
+      NSLog(@"JLJDDayView starting resource list iteration");
       for (JLJDResource *resource in resourceList) {
          if (index % 2) {
             bgColor = oddColor;
@@ -62,6 +65,8 @@
          [resourceDayView didMoveToSuperview];
          resourceDayViewYPos += kJLJDScheduleBlockHeight;
       }
+      NSLog(@"JLJDDayView done with resource list iteration");
+
       [self setBackgroundColor:bgColor];
       [[self dayTitleView] setBackgroundColor:bgColor];
       [[[self dayTitleView] dayLabel]
@@ -72,6 +77,7 @@
             [[self dayTitleView] frame].size.width,
             resourceDayViewYPos)];
    }
+   NSLog(@"JLJDDayView initWithDate ended");
 
    return self;
 }
@@ -124,7 +130,7 @@ didSelectBlockStartDateTime:(NSDate *)startDate
 /*
    Delegate handler for the JLJDDayTitleView hour block touches
 */
-- (void)dayTitleView:(JLJDayTitleView *)dayTitleView
+- (void)dayTitleView:(JLJDDayTitleView *)dayTitleView
        didSelectHour:(NSNumber *)hour
              forDate:(NSDate *)date {
    NSLog(@"dayView handling touch of hour and date");
@@ -137,19 +143,19 @@ didSelectBlockStartDateTime:(NSDate *)startDate
    }
 }
 
-- (void)clearSelectedHourColumn{
+- (void)clearSelectedHourColumn {
    [[self overlaySelectedHourView] removeFromSuperview];
    [self setOverlaySelectedHourView:nil];
 }
 
 - (void)highlightSelectedHourColumn:(NSNumber *)hour
                             minutes:(NSNumber *)minutes {
-
+   NSLog(@"highlightSelectedHourColumn started");
    float fallsOnX;
 
-   float hourFraction = [minutes floatValue]/60;
+   float hourFraction = [minutes floatValue] / 60;
    float hourPosition = ([hour intValue] - [[self startDayHour] intValue]) *
-               kJLJDScheduleBlockWidthPerHour;
+         kJLJDScheduleBlockWidthPerHour;
    float fractionalHourPosition =
          (kJLJDScheduleBlockWidthPerHour * hourFraction);
    fallsOnX = hourPosition + fractionalHourPosition;
@@ -178,5 +184,7 @@ didSelectBlockStartDateTime:(NSDate *)startDate
       }
       [self setNeedsDisplay];
    }
+   NSLog(@"highlightSelectedHourColumn ended");
+
 }
 @end

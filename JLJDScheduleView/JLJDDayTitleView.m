@@ -23,6 +23,7 @@
                 endHour:(NSNumber *)endHour
                    date:(NSDate *)date {
    NSAssert(([endHour intValue] > [startHour intValue]), @"startHour[%@] must be before endHour[%@] ", startHour, endHour);
+   NSLog(@"JLJDDayTitleView initWithStartHour started");
 
    self = [super init];
    if (self) {
@@ -50,6 +51,8 @@
       [self setFrame:CGRectMake(0, 0, _hourBarView.frame.size.width,
             [self dayLabel].frame.size.height + _hourBarView.frame.size.height)];
    }
+   NSLog(@"JLJDDayTitleView initWithStartHour ended");
+
    return self;
 }
 

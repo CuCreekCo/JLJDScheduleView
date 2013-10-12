@@ -19,15 +19,16 @@ enum {
 
 
 @interface JLJDHourOfDayView : UIView
-@property (nonatomic, weak) id<JLJDHourOfDayViewDelegate>delegate;
-@property (nonatomic, copy) NSNumber *hourOfDay;
-@property (nonatomic, assign) JLJDScheduleViewHourOfDaySelectionState selectionState;
+@property(nonatomic, weak) id <JLJDHourOfDayViewDelegate> delegate;
+@property(nonatomic, copy) NSNumber *hourOfDay;
+@property(nonatomic, assign) JLJDScheduleViewHourOfDaySelectionState selectionState;
 @end
 
 /*
    Delegate to handle touching an hour in the hour block
 */
-@protocol JLJDHourOfDayViewDelegate<NSObject>
+@protocol JLJDHourOfDayViewDelegate <NSObject>
 @optional
-- (void)hourOfDayView:(JLJDHourOfDayView *)hourOfDayView didSelectHour:(NSNumber*)hour;
+- (void)hourOfDayView:(JLJDHourOfDayView *)hourOfDayView
+        didSelectHour:(NSNumber *)hour;
 @end

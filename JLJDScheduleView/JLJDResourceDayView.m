@@ -10,7 +10,6 @@
 #import <EventKit/EventKit.h>
 #import "JLJDResourceTimeBlockView.h"
 #import "JLJDResourceDayView.h"
-#import "JLJDResourceTimeBlockView.h"
 #import "NSDate+JLJDDateHelper.h"
 
 @implementation JLJDResourceDayView {
@@ -18,11 +17,12 @@
 }
 
 - (id)initWithFrame:(CGRect)frame
-          dayStartHour:(int)start
-            dayEndHour:(int)end
+       dayStartHour:(int)start
+         dayEndHour:(int)end
                date:(NSDate *)date
         andResource:(JLJDResource *)resource {
    NSAssert(end > start, @"start of day hour [%d] must be before end of day[%d]", start, end);
+   NSLog(@"JLJDResourceDayView initWithFrame started");
    self = [super initWithFrame:frame];
 
    if (self) {
@@ -31,7 +31,7 @@
          CGPoint pointOnDayScale =
                [JLJDResourceDayView pointInDayWithStartDateTime:[event
                      startDate] fallsOnDate:date forDayStart:start dayEnd:end];
-         if(pointOnDayScale.x>0.0 && pointOnDayScale.y>=0.0){
+         if (pointOnDayScale.x > 0.0 && pointOnDayScale.y >= 0.0) {
             JLJDResourceTimeBlockView *timeBlockView =
                   [[JLJDResourceTimeBlockView alloc]
                         initWithStartDate:[event startDate]
@@ -44,6 +44,8 @@
          }
       }
    }
+   NSLog(@"JLJDResourceDayView initWithFrame done");
+
    return self;
 }
 
@@ -62,7 +64,8 @@ day view coordinate system:
                            forDayStart:(int)start
                                 dayEnd:(int)end {
    int blocksInDayView = abs(end - start) + 1;
-   NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+   NSCalendar *gregorian = [[NSCalendar alloc]
+         initWithCalendarIdentifier:NSGregorianCalendar];
    NSDateComponents *eventStartHourOfDayComponent =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |
@@ -71,10 +74,10 @@ day view coordinate system:
 
    float fallsOnX;
 
-   if ([startTime isSameDayAsDate:date ] ||
+   if ([startTime isSameDayAsDate:date] ||
          [startTime isSameDayAsDate:date]) {
-      float hourFraction = (float)[eventStartHourOfDayComponent minute]/60;
-      float hourPosition =(
+      float hourFraction = (float) [eventStartHourOfDayComponent minute] / 60;
+      float hourPosition = (
             abs(blocksInDayView - [eventStartHourOfDayComponent hour]) *
                   kJLJDScheduleBlockWidthPerHour);
       float fractionalHourPosition =
@@ -87,6 +90,12 @@ day view coordinate system:
 
 #pragma mark Drawing UI
 - (void)drawRect:(CGRect)rect {
+   NSLog(@"JLJDResourceDayView drawRect started for rect height[%f] width[%f] x[%f] y[%f]",
+         rect.size.height, rect.size.width, rect.origin.x, rect.origin.y);
+   NSLog(@"JLJDResourceDayView drawRect started for self height[%f] width[%f] x[%f] y[%f]",
+         self.bounds.size.height, self.bounds.size.width,
+         self.bounds.origin.x, self.bounds.origin.y);
+
    CGContextRef context = UIGraphicsGetCurrentContext();
 
    CGContextSetLineWidth(context, 1.0);
@@ -94,9 +103,9 @@ day view coordinate system:
    CGContextSaveGState(context);
    CGContextSetStrokeColorWithColor(context,
          [UIColor
-               colorWithRed: 152.0/255.0
-               green: 251.0/255.0
-               blue:152.0 / 255.0 alpha: 1.0].CGColor);
+               colorWithRed:152.0 / 255.0
+               green:251.0 / 255.0
+               blue:152.0 / 255.0 alpha:1.0].CGColor);
    CGContextMoveToPoint(context, 0, 0);
    CGContextAddLineToPoint(context, 0, self.bounds.size.height);
    CGContextAddLineToPoint(context, self.bounds.size.width,
@@ -104,6 +113,8 @@ day view coordinate system:
    CGContextAddLineToPoint(context, self.bounds.size.width, 0);
    CGContextStrokePath(context);
    CGContextRestoreGState(context);
+   NSLog(@"JLJDResourceDayView drawRect ended");
+
 }
 
 #pragma mark Touches
@@ -135,11 +146,11 @@ day view coordinate system:
 didSelectTimeBlockStartDateTime:(NSDate *)startDateTime
                     endDateTime:(NSDate *)endDateTime
                        resource:(JLJDResource *)resource
-                     withEvent:(EKEvent *)event {
+                      withEvent:(EKEvent *)event {
    NSLog(@"resourceTimeBlockView handling touch of resource block");
 
    if ([self delegate] != nil) {
-      if([[self delegate] respondsToSelector:
+      if ([[self delegate] respondsToSelector:
             @selector(resourceDayView:didSelectBlockStartDateTime:endDateTime:resource:withEvent:)]) {
          [[self delegate]
                resourceDayView:self

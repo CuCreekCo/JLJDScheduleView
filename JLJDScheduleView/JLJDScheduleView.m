@@ -11,11 +11,7 @@
 //
 
 #import "JLJDScheduleView.h"
-#import "JLJDDayView.h"
-#import "JLJDResourceTimeBlockView.h"
 #import "NSDate+JLJDDateHelper.h"
-#import "JLJDResource.h"
-#import "JLJDDayTitleView.h"
 
 @implementation JLJDScheduleView {
    float _oneThirdsMyWidth;
@@ -36,9 +32,10 @@
               withResourceList:(NSArray *)resourceList
                      withFrame:(CGRect)frame
                   scrollToDate:(NSDate *)scrollToDate {
-   self = [super init];
+   NSLog(@"JLJDScheduleView initScheduleViewStarting started");
+
+   self = [super initWithFrame:frame];
    if (self) {
-      [self setFrame:frame];
 
       _oneThirdsMyWidth = [self frame].size.width / 3;
       _twoThirdsMyWidth = [self frame].size.width - _oneThirdsMyWidth;
@@ -52,6 +49,8 @@
       [self initializeToolbar];
       [self initializeScheduleView];
    }
+   NSLog(@"JLJDScheduleView initScheduleViewStarting ended");
+
    return self;
 }
 
@@ -68,22 +67,26 @@
    [self addSubview:[self resourceTableView]];
    [[self resourceTableView] didMoveToSuperview];
 }
+
 - (void)initializeToolbar {
    [self setToolbarView:[[UIToolbar alloc] initWithFrame:CGRectMake(0, 0,
          _oneThirdsMyWidth,
-         kJLJDScheduleBlockHeight+4)]];
-   [[self toolbarView] setBarStyle:UIBarStyleBlackTranslucent];
+         kJLJDScheduleBlockHeight + 4)]];
+   [[self toolbarView] setBarStyle:UIBarStyleDefault];
    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc]
          initWithBarButtonSystemItem:UIBarButtonSystemItemAction
          target:self action:@selector(toolbarActionButtonAction)];
+   [actionButton setTintColor:[UIColor orangeColor]];
    [[self toolbarView] setItems:@[actionButton]];
    [self addSubview:[self toolbarView]];
    [[self toolbarView] didMoveToSuperview];
 }
 
 - (void)initializeScheduleView {
+   NSLog(@"JLJDScheduleView initializeScheduleView started.");
+
    [self setScheduleScrollView:
-         [[UIScrollView alloc] initWithFrame:CGRectMake(_oneThirdsMyWidth+1,
+         [[UIScrollView alloc] initWithFrame:CGRectMake(_oneThirdsMyWidth + 1,
                0,
                _twoThirdsMyWidth,
                [self frame].size.height)]];
@@ -97,13 +100,12 @@
    [indicator startAnimating];
    [self addSubview:indicator];
 
-   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-         NULL), ^{
+   dispatch_async(dispatch_get_main_queue(), ^{
       NSDate *dayViewDate = [[self startDate] copy];
-      int i=0;
+      int i = 0;
       float dayViewWidthSum = 0.0;
 
-      while([dayViewDate compare:[self endDate]]!=NSOrderedDescending){
+      while ([dayViewDate compare:[self endDate]] != NSOrderedDescending) {
          //TODO unhardcode the end and start
          JLJDDayView *dayView =
                [[JLJDDayView alloc] initWithDate:dayViewDate
@@ -114,20 +116,26 @@
          [dayView setDelegate:self];
          [[self scheduleScrollView] addSubview:dayView];
          [dayView didMoveToSuperview];
-         dayViewWidthSum+=dayView.frame.size.width;
-         dayViewDate = [dayViewDate dateByAddingTimeInterval:60*60*24];
+         dayViewWidthSum += dayView.frame.size.width;
+         dayViewDate = [dayViewDate dateByAddingTimeInterval:60 * 60 * 24];
       }
+      NSLog(@"JLJDScheduleView done with day view. ScheduleScrollView subview started.");
+
       [[self scheduleScrollView] setContentSize:CGSizeMake(dayViewWidthSum,
             [self frame].size.height)];
+
       [self addSubview:[self scheduleScrollView]];
       [[self scheduleScrollView] didMoveToSuperview];
       if ([self scrollToDateDate] != nil) {
          [self highlightScheduledForDate:[self scrollToDateDate]];
-         [self setNeedsDisplay];
       }
+      NSLog(@"JLJDScheduleView done with day view. ScheduleScrollView subview ended.");
+
       [indicator stopAnimating];
 
    });
+   NSLog(@"JLJDScheduleView initializeScheduleView ended.");
+
 }
 
 #pragma mark TableView
@@ -156,29 +164,36 @@
 
 
 #pragma mark Toolbar Handlers
--(void)toolbarActionButtonAction {
+- (void)toolbarActionButtonAction {
    NSLog(@"toolbarActionButtonAction pressed");
 }
 
 #pragma mark Date and Block
--(JLJDDayView *)scrollToDate:(NSDate *)scrollDate{
+- (JLJDDayView *)scrollToDate:(NSDate *)scrollDate {
+
+   NSLog(@"JLJDScheduleView scrollToDate started.");
 
    float dayViewSum = 0.0;
-   for(JLJDDayView *dayView in [[self scheduleScrollView] subviews]) {
-      if([dayView isKindOfClass:[JLJDDayView class]]){
+   for (JLJDDayView *dayView in [[self scheduleScrollView] subviews]) {
+      if ([dayView isKindOfClass:[JLJDDayView class]]) {
          if ([scrollDate isSameDayAsDate:[dayView date]]) {
             [[self scheduleScrollView]
                   setContentOffset:CGPointMake(dayViewSum, 0.0)
                   animated:YES];
             [dayView setDate:scrollDate];
+
+            NSLog(@"JLJDScheduleView scrollToDate ended.");
+
             return dayView;
          }
-         dayViewSum+=[dayView bounds].size.width;
+         dayViewSum += [dayView bounds].size.width;
       }
    }
    [[self scheduleScrollView]
-            setContentOffset:CGPointMake(0.0, 0.0)
-            animated:YES];
+         setContentOffset:CGPointMake(0.0, 0.0)
+         animated:YES];
+   NSLog(@"JLJDScheduleView scrollToDate ended.");
+
    return nil;
 }
 
@@ -191,8 +206,8 @@
         forDate:(NSDate *)date {
    NSLog(@"gotcha in the day view touching an hour");
    if ([self delegate] != nil) {
-      if([[self delegate] respondsToSelector:@selector
-      (scheduleView:didSelectHour:forDate:)]){
+      if ([[self delegate] respondsToSelector:@selector
+      (scheduleView:didSelectHour:forDate:)]) {
          [[self delegate] scheduleView:self
                didSelectHour:hour forDate:date];
       }
@@ -219,14 +234,18 @@ didSelectResourceBlock:(JLJDResource *)resource
 For a given date, draw a big rectangle in the day view
  */
 - (void)highlightScheduledForDate:(NSDate *)scheduleDate {
-   for(JLJDDayView *dayView in [[self scheduleScrollView] subviews]) {
-      if([dayView isKindOfClass:[JLJDDayView class]]){
+   NSLog(@"JLJDScheduleView highlightScheduledForDate started.");
+
+   for (JLJDDayView *dayView in [[self scheduleScrollView] subviews]) {
+      if ([dayView isKindOfClass:[JLJDDayView class]]) {
          [dayView clearSelectedHourColumn];
       }
    }
    JLJDDayView *dayView = [self scrollToDate:scheduleDate];
    [dayView highlightSelectedHourColumn:[NSNumber numberWithInt:
-   [scheduleDate hourOfDate]]
+         [scheduleDate hourOfDate]]
          minutes:[NSNumber numberWithInt:[scheduleDate minutesOfDate]]];
+   NSLog(@"JLJDScheduleView highlightScheduledForDate ended.");
+
 }
 @end

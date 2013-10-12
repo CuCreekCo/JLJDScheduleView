@@ -12,8 +12,9 @@
 
 @implementation NSDate (JLJDDateHelper)
 
-- (BOOL)isSameDayAsDate:(NSDate *)otherDate{
-   NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+- (BOOL)isSameDayAsDate:(NSDate *)otherDate {
+   NSCalendar *gregorian = [[NSCalendar alloc]
+         initWithCalendarIdentifier:NSGregorianCalendar];
    NSDateComponents *dateComponents =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |
@@ -30,8 +31,9 @@
          [dateComponents year] == [otherDateComponents year]);
 }
 
-- (int)hourOfDate{
-   NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+- (int)hourOfDate {
+   NSCalendar *gregorian = [[NSCalendar alloc]
+         initWithCalendarIdentifier:NSGregorianCalendar];
    NSDateComponents *dateComponents =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |
@@ -39,8 +41,10 @@
                fromDate:self];
    return [dateComponents hour];
 }
-- (int)minutesOfDate{
-   NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+
+- (int)minutesOfDate {
+   NSCalendar *gregorian = [[NSCalendar alloc]
+         initWithCalendarIdentifier:NSGregorianCalendar];
    NSDateComponents *dateComponents =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |
@@ -49,9 +53,11 @@
    return [dateComponents minute];
 }
 
-- (NSDate *)setHour:(NSNumber *)hour andMinutes:(NSNumber *)minutes {
+- (NSDate *)setHour:(NSNumber *)hour
+         andMinutes:(NSNumber *)minutes {
 
-   NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+   NSCalendar *gregorian = [[NSCalendar alloc]
+         initWithCalendarIdentifier:NSGregorianCalendar];
    NSDateComponents *dateComponents =
          [gregorian components:(NSHourCalendarUnit |
                NSMinuteCalendarUnit | NSDayCalendarUnit |

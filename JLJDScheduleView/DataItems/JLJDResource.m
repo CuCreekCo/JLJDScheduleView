@@ -33,7 +33,7 @@
                 resourceName:(NSString *)resourceName
                 resourceType:(NSString *)resourceType {
    return [[self alloc] initWithEventArray:eventArray resourceName:resourceName
-         resourceType:resourceType ];
+         resourceType:resourceType];
 }
 
 @end

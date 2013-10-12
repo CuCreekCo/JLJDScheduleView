@@ -20,16 +20,22 @@
 
 @interface JLJDDayTitleView : UIView <JLJDHourOfDayViewDelegate>
 
-@property (nonatomic, weak) id<JLJDDayTitleViewDelegate>delegate;
+@property(nonatomic, weak) id <JLJDDayTitleViewDelegate> delegate;
 
-@property (nonatomic, copy) NSDate *date; /* Date of the day */
-@property (nonatomic, strong) UILabel *dayLabel; /* The label used to show
+@property(nonatomic, copy) NSDate *date;
+/* Date of the day */
+@property(nonatomic, strong) UILabel *dayLabel;
+/* The label used to show
 the day's date in long format */
-@property (nonatomic, strong) UIView *hourBarView; /* Hour Bar view under the
- day's date label */
-@property (nonatomic, strong) NSNumber *startHour; /* The day's start hour in
- military time */
-@property (nonatomic, strong) NSNumber *endHour; /* The day's end hour in
+@property(nonatomic, strong) UIView *hourBarView;
+/* Hour Bar view under the
+day's date label */
+@property(nonatomic, strong) NSNumber *startHour;
+/* The day's start hour in
+military time */
+@property(nonatomic, strong) NSNumber *endHour;
+
+/* The day's end hour in
 military time */
 
 - (id)initWithStartHour:(NSNumber *)startHour
@@ -41,9 +47,10 @@ military time */
 /*
    Day title view delegate that will detect touch events title bar.
 */
-@protocol JLJDDayTitleViewDelegate<NSObject>
+@protocol JLJDDayTitleViewDelegate <NSObject>
 @optional
-- (void)dayTitleView:(JLJDayTitleView *)dayTitleView didSelectHour:(NSNumber *)hour
+- (void)dayTitleView:(JLJDDayTitleView *)dayTitleView
+       didSelectHour:(NSNumber *)hour
              forDate:(NSDate *)date;
 
 @end

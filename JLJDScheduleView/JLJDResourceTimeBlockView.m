@@ -22,8 +22,12 @@ float const kJLJDScheduleBlockWidth = 40.0;
 @synthesize startDateTime = _startDateTime;
 @synthesize endDateTime = _endDateTime;
 
-- (id)initWithStartDate:(NSDate *)start endDate:(NSDate *)end xPosition:
-      (float)x yPosition:(float)y {
+- (id)initWithStartDate:(NSDate *)start
+                endDate:(NSDate *)end
+              xPosition:
+                    (float)x
+              yPosition:(float)y {
+   NSLog(@"JLJDResourceTimeBlockView started");
    self = [super init];
    if (self) {
       [self setStartDateTime:[start copy]];
@@ -31,27 +35,31 @@ float const kJLJDScheduleBlockWidth = 40.0;
       [self setFrame:CGRectMake(x, y, [self calculateBlockWidth],
             kJLJDScheduleBlockWidthPerHour)];
    }
+   NSLog(@"JLJDResourceTimeBlockView ended");
    return self;
 }
 
-- (CGFloat) calculateBlockWidth{
+- (CGFloat)calculateBlockWidth {
 
    long startMilliseconds = [[self startDateTime] timeIntervalSince1970];
    long endMilliseconds = [[self endDateTime] timeIntervalSince1970];
    long millisecondDiff = (endMilliseconds - startMilliseconds);
-   float toMinutes = (float)millisecondDiff/60;
-   float toHours = toMinutes/60;
+   float toMinutes = (float) millisecondDiff / 60;
+   float toHours = toMinutes / 60;
    return toHours * kJLJDScheduleBlockWidthPerHour;
 }
 
 #pragma mark UIView methods
 
 - (void)drawRect:(CGRect)rect {
+   NSLog(@"JLJDResourceTimeBlockView drawRect started");
    if ([self isMemberOfClass:[JLJDResourceTimeBlockView class]]) {
       // If this isn't a subclass use the default drawing
       [self drawBackground];
       [self drawBorders];
    }
+   NSLog(@"JLJDResourceTimeBlockView drawRect ended");
+
 }
 
 
@@ -104,6 +112,7 @@ float const kJLJDScheduleBlockWidth = 40.0;
       }
    }
 }
+
 - (void)touchesMoved:(NSSet *)touches
            withEvent:(UIEvent *)event {
    [super touchesMoved:touches withEvent:event];

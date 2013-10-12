@@ -11,22 +11,19 @@
 
 @implementation JLJDScheduleViewTests
 
-- (void)setUp
-{
-    [super setUp];
-    
-    // Set-up code here.
+- (void)setUp {
+   [super setUp];
+
+   // Set-up code here.
 }
 
-- (void)tearDown
-{
-    // Tear-down code here.
-    
-    [super tearDown];
+- (void)tearDown {
+   // Tear-down code here.
+
+   [super tearDown];
 }
 
-- (void)testTitleViewParameters
-{
+- (void)testTitleViewParameters {
    JLJDDayTitleView *titleView = [[JLJDDayTitleView alloc]
          initWithStartHour:[NSNumber numberWithInt:10]
          endHour:[NSNumber numberWithInt:8] date:nil ];

@@ -24,11 +24,11 @@ extern float const kJLJDScheduleBlockWidth;
 
 @interface JLJDResourceTimeBlockView : UIView
 
-@property (nonatomic, weak) id<JLJDResourceTimeBlockViewDelegate>delegate;
-@property (nonatomic, strong) NSDate *startDateTime;
-@property (nonatomic, strong) NSDate *endDateTime;
-@property (nonatomic, strong) JLJDResource *resource;
-@property (nonatomic, strong) EKEvent *event;
+@property(nonatomic, weak) id <JLJDResourceTimeBlockViewDelegate> delegate;
+@property(nonatomic, strong) NSDate *startDateTime;
+@property(nonatomic, strong) NSDate *endDateTime;
+@property(nonatomic, strong) JLJDResource *resource;
+@property(nonatomic, strong) EKEvent *event;
 
 - (id)initWithStartDate:(NSDate *)start
                 endDate:(NSDate *)end
@@ -39,11 +39,11 @@ extern float const kJLJDScheduleBlockWidth;
 /*
    Delegation to handle touching on a resources block
  */
-@protocol JLJDResourceTimeBlockViewDelegate<NSObject>
+@protocol JLJDResourceTimeBlockViewDelegate <NSObject>
 @optional
-- (void)resourceTimeBlockView:(JLJDResourceTimeBlockView *)timeBlockView
-         didSelectTimeBlockStartDateTime:(NSDate *)startDateTime
-                  endDateTime:(NSDate *)endDateTime
-                     resource:(JLJDResource *)resource
-                     withEvent:(EKEvent *)event;
+- (void)  resourceTimeBlockView:(JLJDResourceTimeBlockView *)timeBlockView
+didSelectTimeBlockStartDateTime:(NSDate *)startDateTime
+                    endDateTime:(NSDate *)endDateTime
+                       resource:(JLJDResource *)resource
+                      withEvent:(EKEvent *)event;
 @end

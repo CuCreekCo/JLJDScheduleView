@@ -18,26 +18,33 @@
 @class JLJDResource;
 @protocol JLJDScheduleViewDelegate;
 
-@interface JLJDScheduleView : UIView<UITableViewDelegate,UITableViewDataSource,
+@interface JLJDScheduleView : UIView <UITableViewDelegate, UITableViewDataSource,
       UIScrollViewDelegate, JLJDDayViewDelegate, JLJDDayTitleViewDelegate>
-@property (nonatomic, weak) id<JLJDScheduleViewDelegate>delegate;
-@property (nonatomic, strong) UITableView *resourceTableView; /* Table view
+@property(nonatomic, weak) id <JLJDScheduleViewDelegate> delegate;
+@property(nonatomic, strong) UITableView *resourceTableView;
+/* Table view
 that displays the list of resources */
-@property (nonatomic, strong) UIScrollView *scheduleScrollView; /* Scroll
+@property(nonatomic, strong) UIScrollView *scheduleScrollView;
+/* Scroll
 view that contains X number of days on breaks the day down into hours.  Each
 resource has a row of time blocks in this view. */
-@property (nonatomic, weak, readonly) JLJDDayView *dayView; /* Handle to the day view
- */
+@property(nonatomic, weak, readonly) JLJDDayView *dayView;
+/* Handle to the day view
+*/
 
-@property (nonatomic, strong) UIToolbar *toolbarView; /* Toolbar above the
+@property(nonatomic, strong) UIToolbar *toolbarView;
+/* Toolbar above the
 table view for event modifications */
-@property (nonatomic, strong) NSDate *startDate; /* The date that starts the
+@property(nonatomic, strong) NSDate *startDate;
+/* The date that starts the
 days view */
-@property (nonatomic, strong) NSDate *endDate; /* The ending date that ends
+@property(nonatomic, strong) NSDate *endDate;
+/* The ending date that ends
 the days view */
-@property (nonatomic, copy) NSDate *scrollToDateDate; /*Optional scroll to date
+@property(nonatomic, copy) NSDate *scrollToDateDate;
+/*Optional scroll to date
 after load */
-@property (nonatomic, strong) NSArray *resourceList;
+@property(nonatomic, strong) NSArray *resourceList;
 
 /* List of resources to
 include in the schedule view */
@@ -57,13 +64,13 @@ include in the schedule view */
    Delegate to handle touches on the components of the schedule view
       like title touch, day touch, block touch
 */
-@protocol JLJDScheduleViewDelegate<NSObject>
+@protocol JLJDScheduleViewDelegate <NSObject>
 @optional
 - (void)scheduleView:(JLJDScheduleView *)scheduleView
-      didSelectHour:(NSNumber *)hour
-            forDate:(NSDate *)date;
+       didSelectHour:(NSNumber *)hour
+             forDate:(NSDate *)date;
 
-- (void)scheduleView:(JLJDScheduleView *)scheduleView
-         didSelectResourceBlock:(JLJDResource *)resource
-            forEvent:(EKEvent *)event;
+- (void)  scheduleView:(JLJDScheduleView *)scheduleView
+didSelectResourceBlock:(JLJDResource *)resource
+              forEvent:(EKEvent *)event;
 @end
